@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: jenkins-102
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/devops-integrated/jenkins-102'
+    targetRevision: HEAD
+    path: jenkins
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: jenkins
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
+
